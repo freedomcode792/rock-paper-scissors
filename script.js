@@ -25,8 +25,15 @@
     winner.
         1) Output a message such as "rock, paper, scissors!" or something 
         like that, to make the user aware that the round has starter.
-        2) Prompt the user for 
+        Wrap this into a function.
+        2) Prompt the user for input. Input needs to be checked for
+        validity. Both of these can be wrapped into functions, but the
+        second one absolutely should.
+        3)Compare the userChoice with computerChoice and determine the
+        winner. Output the result of the match as a string. All of this
+        can be done in one function we will call "decideWinner"
 
+    
 */
 
 console.log("Hello World!")
