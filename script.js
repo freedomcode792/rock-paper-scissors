@@ -47,4 +47,33 @@ function generateComputerChoice(){
     
 }
 
-console.log(generateComputerChoice())
+function printMessagesWithDelay(messages) {
+    /*should:
+     1)print three stings:"Rock","Paper","Scissors" into the console
+     with a delay between each print
+     2)prompt the user for input with
+     a message "Make your choice!".
+     */
+     
+    for (let i = 0; i < messages.length; i++){
+        setTimeout(
+            function () {
+                console.log(messages[i]);
+            }
+        ,1000*(i+1));
+
+        if(i>=messages.length-1){
+            setTimeout(
+                function() {
+                    console.log("Make your choice!");
+                }
+            ,1000*(i+1.5))
+        }
+        
+    }
+    
+     
+}
+
+console.log(generateComputerChoice());
+printMessagesWithDelay(["Rock","Paper","Scissors"]);
