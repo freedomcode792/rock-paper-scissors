@@ -38,7 +38,7 @@
 
 console.log("Hello World!")
 
-function generateComputerChoice(){
+function generateComputerSelection(){
     /*should randomly output one of three strings:"Rock", "Paper"
     or "Scissors" */
     /*first get randomly one of the three numbers: 0,1 or 2 */
@@ -75,5 +75,38 @@ function printMessagesWithDelay(messages) {
      
 }
 
-console.log(generateComputerChoice());
-printMessagesWithDelay(["Rock","Paper","Scissors"]);
+
+
+function playRound(playerSelection, computerSelection){
+    /*check who's won
+        if computer won
+            return "you lost!"
+        
+        if player won
+            return "you won!"
+
+        if it's a draw
+            return "draw!"
+    */
+}
+
+
+
+function getPlayerSelection(){
+    /*The function should:
+        1. prompt the user for a string
+        2. check whether the string provided is correct
+            -I gonna need regex to pull this off. 
+        3. if yes -> return the string
+        4. if not -> prompt for a new string
+    */
+    let playerSelection=prompt("Make your choice!");
+    const check = /^((rock)|(paper)|(scissors))$/i;
+    while (!(check.test(playerSelection))){
+        playerSelection=prompt('Please enter "Rock", "Paper" or "Scissors"');
+    }
+
+    return playerSelection;
+
+}
+console.log(getPlayerSelection());
