@@ -43,7 +43,7 @@ function generateComputerSelection(){
     or "Scissors" */
     /*first get randomly one of the three numbers: 0,1 or 2 */
     const rand = Math.floor((Math.random()*3));
-    return rand===0 ? "Rock" : rand===1 ? "Paper" : "Scissors";
+    return rand===0 ? "rock" : rand===1 ? "paper" : "scissors";
     
 }
 
@@ -88,6 +88,29 @@ function playRound(playerSelection, computerSelection){
         if it's a draw
             return "draw!"
     */
+
+        /*I think I need to eliminate case insensitive checks at
+        this point. Perhaps I should make getPlayerSelection
+        return standardized strings, instead of user input directly.
+        */
+        if (playerSelection === "rock") {
+            return computerSelection == "rock" ? "Draw" : 
+                    computerSelection == "paper" ? "paper beats rock You lost!" :
+                     "rock beats scissors! You won!"
+
+        }else if (playerSelection === "paper") {
+            return computerSelection == "paper" ? "Draw" :
+                    computerSelection == "scissors" ? "Scissors beats paper! You lost!" :
+                     "Paper beats rock! You won!"
+
+        } else if (playerSelection === "scissors") {
+            return computerSelection == "scissors" ? "Draw" :
+                    computerSelection == "rock" ? "Rock beats scissors! You lost!" :
+                     "Scissors beats paper! You won!"
+                     
+        }
+            
+        
 }
 
 
@@ -106,7 +129,14 @@ function getPlayerSelection(){
         playerSelection=prompt('Please enter "Rock", "Paper" or "Scissors"');
     }
 
-    return playerSelection;
+    return playerSelection.toLowerCase();
 
 }
-console.log(getPlayerSelection());
+
+let playerSelection = getPlayerSelection();
+let computerSelection = generateComputerSelection();
+
+console.log(playerSelection);
+console.log(computerSelection);
+
+console.log(playRound(playerSelection, computerSelection));
