@@ -68,47 +68,37 @@ function printMessagesWithDelay(messages) {
                     console.log("Make your choice!");
                 }
             ,1000*(i+1.5))
-        }
-        
+        }  
     }
-    
-     
-}
-
+}    
 
 
 function playRound(playerSelection, computerSelection){
-    /*check who's won
-        if computer won
-            return "you lost!"
-        
-        if player won
-            return "you won!"
+/*check who's won
+    if computer won
+        return "you lost!"
+    
+    if player won
+        return "you won!"
 
-        if it's a draw
-            return "draw!"
-    */
+    if it's a draw
+        return "draw!"
+*/
 
-        /*I think I need to eliminate case insensitive checks at
-        this point. Perhaps I should make getPlayerSelection
-        return standardized strings, instead of user input directly.
-        */
-        if (playerSelection === "rock") {
-            return computerSelection == "rock" ? "Draw" : 
-                    computerSelection == "paper" ? "paper beats rock You lost!" :
-                     "rock beats scissors! You won!"
-
-        }else if (playerSelection === "paper") {
-            return computerSelection == "paper" ? "Draw" :
-                    computerSelection == "scissors" ? "Scissors beats paper! You lost!" :
-                     "Paper beats rock! You won!"
-
-        } else if (playerSelection === "scissors") {
-            return computerSelection == "scissors" ? "Draw" :
-                    computerSelection == "rock" ? "Rock beats scissors! You lost!" :
-                     "Scissors beats paper! You won!"
-                     
-        }
+    if (playerSelection === "rock") {
+        return computerSelection == "rock" ? "Draw" : 
+                computerSelection == "paper" ? "paper beats rock You lost!" :
+                 "rock beats scissors! You won!"
+    }else if (playerSelection === "paper") {
+        return computerSelection == "paper" ? "Draw" :
+                computerSelection == "scissors" ? "Scissors beats paper! You lost!" :
+                 "Paper beats rock! You won!"
+    } else if (playerSelection === "scissors") {
+        return computerSelection == "scissors" ? "Draw" :
+                computerSelection == "rock" ? "Rock beats scissors! You lost!" :
+                 "Scissors beats paper! You won!"
+                 
+    }
             
         
 }
@@ -133,10 +123,67 @@ function getPlayerSelection(){
 
 }
 
-let playerSelection = getPlayerSelection();
-let computerSelection = generateComputerSelection();
 
-console.log(playerSelection);
-console.log(computerSelection);
+function game () {
+    /*This function should tie together all the other functions
+    to create a complete game. The game will consist of 5 rounds,
+    and should keep score. After the 5th game has been played,
+    the function should determine the winner.*/
 
-console.log(playRound(playerSelection, computerSelection));
+    /*Actually, after having though about this, it doesn't make
+    much sense to just play 5 games, because if one side has
+    score 3 wins in a row from the very start, it makes the
+    remaining 2 games kinda meaningless. It will be much better to
+    play the game indefinitely until one side has reached 5 victories.*/
+
+    /*Plan:
+        1) create variables tracking the score of the two players
+        2) create an indefinite loop which ends after one of the variables
+        has reached 5. 
+            - each iteration of the loop should:
+                1) output the message signaling the start of a new game (use printMessagesWithDelay function)
+                2) prompt the user to make their choice (use getUserSelection function)
+                3) get a game result using playRound function and assign a point to the winner
+                4) output the current score of both players (need a simple function of this)
+                5) introduce a delay before the next iteration for the player to have some time to see the result and the score
+            - if computer has reached the victory score
+
+        Note: I need to introduce a delay before the start of a new round. Perhaps I could "freeze" the cycle somehow?
+    */
+
+    let playerScore = 0;
+    let computerScore = 0;
+    let noWinner = true;
+
+    while (noWinner) {
+        let playerSelection = getPlayerSelection();
+        let computerChoice = generateComputerSelection();
+        let roundResult = playRound(playerSelection, computerChoice);
+        console.log("Your choice: ", playerSelection);
+        console.log("Computer choice: ", computerChoice);
+        console.log(roundResult);
+
+        if (roundResult=="You won!") {
+            playerScore++;
+            
+        } else if (roundResult=="You lost!"){
+            computerScore++;
+        } else {
+
+        }
+
+        console.log("Your score: ", playerScore);
+        console.log("Computer score: ", computerScore);
+
+        if(playerScore==5){
+            noWinner=false;
+            console.log("Congratulations! You've defeated the computer!");
+        }
+        if(computerScore==5){
+            noWinner=false;
+            console.log("Oh now! The computer has defeated you!");
+        }
+    }
+}
+
+game();
