@@ -163,10 +163,10 @@ function game () {
         console.log("Computer choice: ", computerChoice);
         console.log(roundResult);
 
-        if (roundResult=="You won!") {
+        if (roundResult.includes("You won!")) {
             playerScore++;
             
-        } else if (roundResult=="You lost!"){
+        } else if (roundResult.includes("You lost!")){
             computerScore++;
         } else {
 
