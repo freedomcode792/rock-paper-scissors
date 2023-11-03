@@ -160,7 +160,12 @@ function game () {
     function repeatGame(){
         /*
             print introductory messages with a delay
-            
+            (this part will probably also require the rest of the
+                code to be executed with a timeout)
+
+            Note: it looks like working with delays comes down to
+            delaying the execution of the code that follows after.
+
             get player choice
             get computer choice
             get round result
@@ -179,11 +184,14 @@ function game () {
 
             if no winner == true {
                 repeatGame with delay
+
+            There should be delays in two places:
+                -a delay of code execution until the intro messages have been printed
+                -a delay of the next recursion of the function 
+                plus the delays between the starting messages
             }
-
-
-
         */
+            printMessagesWithDelay();
     }
 
     let playerScore = 0;
