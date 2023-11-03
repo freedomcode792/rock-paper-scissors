@@ -151,6 +151,41 @@ function game () {
         Note: I need to introduce a delay before the start of a new round. Perhaps I could "freeze" the cycle somehow?
     */
 
+    /*Due to the peculiarities of timeouts in Javascript, I need to
+    rework game function: instead of a loop It should be based on
+    recursion and external variables to stop it.
+    
+    */
+
+    function repeatGame(){
+        /*
+            print introductory messages with a delay
+            
+            get player choice
+            get computer choice
+            get round result
+            print the choices and the result
+            add score to the winner
+
+            if player got 5 wins {
+                print: "you won!"
+                end the function
+            }
+
+            if computer got 5 wins {
+                print: "you lost!"
+                end the function
+            }
+
+            if no winner == true {
+                repeatGame with delay
+            }
+
+
+
+        */
+    }
+
     let playerScore = 0;
     let computerScore = 0;
     let noWinner = true;
