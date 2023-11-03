@@ -47,7 +47,7 @@ function generateComputerSelection(){
     
 }
 
-function printMessagesWithDelay(messages) {
+function printMessagesWithDelay(messages, nextFunction) {
     /*should:
      1)print three stings:"Rock","Paper","Scissors" into the console
      with a delay between each print
@@ -124,6 +124,7 @@ function getPlayerSelection(){
 }
 
 
+
 function game () {
     /*This function should tie together all the other functions
     to create a complete game. The game will consist of 5 rounds,
@@ -157,76 +158,131 @@ function game () {
     
     */
 
-    function repeatGame(){
+
+    let playerScore = 0;
+    let computerScore = 0;
+    //let noWinner = true;
+    newGame();
+
+    // while (noWinner) {
+    //     let playerSelection = getPlayerSelection();
+    //     let computerChoice = generateComputerSelection();
+    //     let roundResult = playRound(playerSelection, computerChoice);
+    //     console.log("Your choice: ", playerSelection);
+    //     console.log("Computer choice: ", computerChoice);
+    //     console.log(roundResult);
+
+    //     if (roundResult.includes("You won!")) {
+    //         playerScore++;
+            
+    //     } else if (roundResult.includes("You lost!")){
+    //         computerScore++;
+    //     } else {
+
+    //     }
+
+    //     console.log("Your score: ", playerScore);
+    //     console.log("Computer score: ", computerScore);
+
+    //     if(playerScore==5){
+    //         noWinner=false;
+    //         console.log("Congratulations! You've defeated the computer!");
+    //     }
+    //     if(computerScore==5){
+    //         noWinner=false;
+    //         console.log("Oh now! The computer has defeated you!");
+    //     }
+    // }
+
+    function newGame(){
         /*
             print introductory messages with a delay
             (this part will probably also require the rest of the
                 code to be executed with a timeout)
-
+    
             Note: it looks like working with delays comes down to
             delaying the execution of the code that follows after.
-
+    
             get player choice
             get computer choice
             get round result
             print the choices and the result
             add score to the winner
-
+    
             if player got 5 wins {
                 print: "you won!"
                 end the function
             }
-
+    
             if computer got 5 wins {
                 print: "you lost!"
                 end the function
             }
-
+    
             if no winner == true {
                 repeatGame with delay
-
+    
             There should be delays in two places:
                 -a delay of code execution until the intro messages have been printed
                 -a delay of the next recursion of the function 
                 plus the delays between the starting messages
             }
-        */
-            printMessagesWithDelay();
-    }
-
-    let playerScore = 0;
-    let computerScore = 0;
-    let noWinner = true;
-
-    while (noWinner) {
-        let playerSelection = getPlayerSelection();
-        let computerChoice = generateComputerSelection();
-        let roundResult = playRound(playerSelection, computerChoice);
-        console.log("Your choice: ", playerSelection);
-        console.log("Computer choice: ", computerChoice);
-        console.log(roundResult);
-
-        if (roundResult.includes("You won!")) {
-            playerScore++;
+        */  
+            printMessagesWithDelay(["Rock", "Paper", "Scissors"]);
+            /*Wait until the messages have been output and start the code */
             
-        } else if (roundResult.includes("You lost!")){
-            computerScore++;
-        } else {
-
-        }
-
-        console.log("Your score: ", playerScore);
-        console.log("Computer score: ", computerScore);
-
-        if(playerScore==5){
-            noWinner=false;
-            console.log("Congratulations! You've defeated the computer!");
-        }
-        if(computerScore==5){
-            noWinner=false;
-            console.log("Oh now! The computer has defeated you!");
-        }
+            setTimeout(()=>{
+                let playerSelection = getPlayerSelection();
+                let computerChoice = generateComputerSelection();
+                let roundResult = playRound(playerSelection, computerChoice);
+                
+                console.log("Your choice: ", playerSelection);
+                console.log("Computer choice: ", computerChoice);
+                console.log(roundResult);
+                
+                if (roundResult.includes("You won!")) {
+                    playerScore++;
+                    
+                } else if (roundResult.includes("You lost!")){
+                    computerScore++;
+                }
+    
+                console.log("Your score: ", playerScore);
+                console.log("Computer score: ", computerScore);
+            
+            }, 4500);
+    
+            if(playerScore==5){
+                noWinner=false;
+                console.log("Congratulations! You've defeated the computer!");
+                return;
+            }else if(computerScore==5){
+                noWinner=false;
+                console.log("Oh now! The computer has defeated you!");
+                return;
+            } else {
+                setTimeout(newGame, 9000);
+            }
+    
+    
+            /*function game{
+                printMessagesWithDelay
+                setTimeOut {
+                    get player choice
+                    get computer choice
+                    get round result
+                    print the choices and the result
+                    add score to the winner
+                    print the score
+    
+                    if someone got 5 points {
+                        print final message and quit
+                    } else {
+                        setTimeOut(game, 3 seconds)
+                    }
+                }
+            } */
     }
 }
-
 game();
+
