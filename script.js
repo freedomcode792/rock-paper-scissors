@@ -43,7 +43,7 @@ function generateComputerSelection(){
     or "Scissors" */
     /*first get randomly one of the three numbers: 0,1 or 2 */
     const rand = Math.floor((Math.random()*3));
-    return rand===0 ? "rock" : rand===1 ? "paper" : "scissors";
+    return uppercaseOnlyFirst(rand===0 ? "rock" : rand===1 ? "paper" : "scissors");
     
 }
 
@@ -85,18 +85,18 @@ function playRound(playerSelection, computerSelection){
         return "draw!"
 */
 
-    if (playerSelection === "rock") {
-        return computerSelection == "rock" ? "Draw" : 
-                computerSelection == "paper" ? "paper beats rock You lost!" :
-                 "rock beats scissors! You won!"
-    }else if (playerSelection === "paper") {
-        return computerSelection == "paper" ? "Draw" :
-                computerSelection == "scissors" ? "Scissors beats paper! You lost!" :
-                 "Paper beats rock! You won!"
-    } else if (playerSelection === "scissors") {
-        return computerSelection == "scissors" ? "Draw" :
-                computerSelection == "rock" ? "Rock beats scissors! You lost!" :
-                 "Scissors beats paper! You won!"
+    if (playerSelection === "Rock") {
+        return computerSelection == "Rock" ? "Draw" : 
+                computerSelection == "Paper" ? "Paper beats Rock You lost!" :
+                 "Rock beats Scissors! You won!"
+    }else if (playerSelection === "Paper") {
+        return computerSelection == "Paper" ? "Draw" :
+                computerSelection == "Scissors" ? "Scissors beats Paper! You lost!" :
+                 "Paper beats Rock! You won!"
+    } else if (playerSelection === "Scissors") {
+        return computerSelection == "Scissors" ? "Draw" :
+                computerSelection == "Rock" ? "Rock beats Scissors! You lost!" :
+                 "Scissors beats Paper! You won!"
                  
     }
             
@@ -118,12 +118,15 @@ function getPlayerSelection(){
     while (!(check.test(playerSelection))){
         playerSelection=prompt('Please enter "Rock", "Paper" or "Scissors"');
     }
-
-    return playerSelection.toLowerCase();
+    
+    return uppercaseOnlyFirst(playerSelection);
 
 }
 
-
+function uppercaseOnlyFirst(str){
+    const lowercaseStr = str.toLowerCase();
+    return  lowercaseStr.slice(0,1).toUpperCase() + lowercaseStr.slice(1);
+}
 
 function game () {
     /*This function should tie together all the other functions
@@ -260,9 +263,9 @@ function game () {
                     console.log("Oh now! The computer has defeated you!");
                     return;
                 } else {
-                    setTimeout(newGame, 2500);
+                    setTimeout(newGame, 2000);
                 }
-            }, 4500);
+            }, 4000);
     
             
     
