@@ -36,7 +36,7 @@
 
 */
 
-console.log("Hello World!")
+
 
 function generateComputerSelection(){
     /*should randomly output one of three strings:"Rock", "Paper"
@@ -167,35 +167,7 @@ function game () {
     //let noWinner = true;
     newGame();
 
-    // while (noWinner) {
-    //     let playerSelection = getPlayerSelection();
-    //     let computerChoice = generateComputerSelection();
-    //     let roundResult = playRound(playerSelection, computerChoice);
-    //     console.log("Your choice: ", playerSelection);
-    //     console.log("Computer choice: ", computerChoice);
-    //     console.log(roundResult);
-
-    //     if (roundResult.includes("You won!")) {
-    //         playerScore++;
-            
-    //     } else if (roundResult.includes("You lost!")){
-    //         computerScore++;
-    //     } else {
-
-    //     }
-
-    //     console.log("Your score: ", playerScore);
-    //     console.log("Computer score: ", computerScore);
-
-    //     if(playerScore==5){
-    //         noWinner=false;
-    //         console.log("Congratulations! You've defeated the computer!");
-    //     }
-    //     if(computerScore==5){
-    //         noWinner=false;
-    //         console.log("Oh now! The computer has defeated you!");
-    //     }
-    // }
+    
 
     function newGame(){
         /*
@@ -267,26 +239,6 @@ function game () {
                 }
             }, 4000);
     
-            
-    
-    
-            /*function game{
-                printMessagesWithDelay
-                setTimeOut {
-                    get player choice
-                    get computer choice
-                    get round result
-                    print the choices and the result
-                    add score to the winner
-                    print the score
-    
-                    if someone got 5 points {
-                        print final message and quit
-                    } else {
-                        setTimeOut(game, 3 seconds)
-                    }
-                }
-            } */
     }
 }
 game();
