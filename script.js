@@ -235,7 +235,7 @@ function game () {
                 let playerSelection = getPlayerSelection();
                 let computerChoice = generateComputerSelection();
                 let roundResult = playRound(playerSelection, computerChoice);
-                
+                console.log('--------------------');
                 console.log("Your choice: ", playerSelection);
                 console.log("Computer choice: ", computerChoice);
                 console.log(roundResult);
@@ -249,20 +249,22 @@ function game () {
     
                 console.log("Your score: ", playerScore);
                 console.log("Computer score: ", computerScore);
+                console.log('============================');
             
+                if(playerScore==5){
+                    noWinner=false;
+                    console.log("Congratulations! You've defeated the computer!");
+                    return;
+                }else if(computerScore==5){
+                    noWinner=false;
+                    console.log("Oh now! The computer has defeated you!");
+                    return;
+                } else {
+                    setTimeout(newGame, 2500);
+                }
             }, 4500);
     
-            if(playerScore==5){
-                noWinner=false;
-                console.log("Congratulations! You've defeated the computer!");
-                return;
-            }else if(computerScore==5){
-                noWinner=false;
-                console.log("Oh now! The computer has defeated you!");
-                return;
-            } else {
-                setTimeout(newGame, 9000);
-            }
+            
     
     
             /*function game{
