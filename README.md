@@ -1,2 +1,2 @@
 # rock-paper-scissors
-Console implememntation of Rock Paper Scissors game
+Console implementation of Rock Paper Scissors game

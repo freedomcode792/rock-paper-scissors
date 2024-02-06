@@ -241,5 +241,15 @@ function game () {
     
     }
 }
-game();
+//game();
+const choiceButtons = document.querySelectorAll(".choice-button");
+
+choiceButtons.forEach(button => button.addEventListener("click", (e)=>{
+    console.log(e.target.dataset.choice);
+    const computerChoice = generateComputerSelection();
+    console.log(computerChoice);
+    console.log(playRound(e.target.dataset.choice, computerChoice));
+}))
+
+
 
