@@ -5,8 +5,28 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+}
+
+#scoreSection{
+    list-style: none;
+    display: flex;
+    gap: 100px;
+}
+
+#computerChoiceSection{
+
+}
+
+#roundResultSection{
+
 }
 
 #buttonSection {
 
+}
+
+.button-pressed{
+    
 }

@@ -243,13 +243,16 @@ function game () {
 }
 //game();
 const choiceButtons = document.querySelectorAll(".choice-button");
+const resultSection = document.querySelector("#roundResultSection");
+const computerChoiceSection = document.querySelector("#computerChoiceSection");
 
 choiceButtons.forEach(button => button.addEventListener("click", (e)=>{
     console.log(e.target.dataset.choice);
     const computerChoice = generateComputerSelection();
-    console.log(computerChoice);
-    console.log(playRound(e.target.dataset.choice, computerChoice));
+    computerChoiceSection.textContent = computerChoice;
+    resultSection.textContent = playRound(e.target.dataset.choice, computerChoice);
 }))
+
 
 
 
