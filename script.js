@@ -265,17 +265,18 @@ function checkRoundWinner(roundResult){
         //playerScore++;
         playerScore.textContent++;
         
+        
     } else if (roundResult.includes("You lost!")){
         computerScore.textContent++;
     }
 }
 
 function checkGameWinner(buttons, chosenButton){
-    if(playerScore==5){
+    if(playerScore.textContent==5){
         
         console.log("Congratulations! You've defeated the computer!");
         return;
-    }else if(computerScore==5){
+    }else if(computerScore.textContent==5){
         
         console.log("Oh no! The computer has defeated you!");
         return;
