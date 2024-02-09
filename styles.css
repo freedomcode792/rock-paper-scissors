@@ -15,8 +15,13 @@ body {
     gap: 100px;
 }
 
-#computerChoiceSection{
+.buttonChosen {
+    border: yellow 5px inset;
+    border-radius: 10%;
+}
 
+#computerChoiceSection{
+    
 }
 
 #roundResultSection{

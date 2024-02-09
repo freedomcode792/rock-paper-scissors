@@ -165,7 +165,7 @@ function game () {
     let playerScore = 0;
     let computerScore = 0;
     //let noWinner = true;
-    newGame();
+    //newGame();
 
     
 
@@ -227,12 +227,12 @@ function game () {
                 console.log('============================');
             
                 if(playerScore==5){
-                    noWinner=false;
+                    //noWinner=false;
                     console.log("Congratulations! You've defeated the computer!");
                     return;
                 }else if(computerScore==5){
-                    noWinner=false;
-                    console.log("Oh now! The computer has defeated you!");
+                    //noWinner=false;
+                    console.log("Oh no! The computer has defeated you!");
                     return;
                 } else {
                     setTimeout(newGame, 2000);
@@ -245,14 +245,84 @@ function game () {
 const choiceButtons = document.querySelectorAll(".choice-button");
 const resultSection = document.querySelector("#roundResultSection");
 const computerChoiceSection = document.querySelector("#computerChoiceSection");
+//const scoreSection = document.querySelector("#scoreSection");
+let playerScore = document.getElementById('playerScore');
+let computerScore = document.getElementById('computerScore');
 
-choiceButtons.forEach(button => button.addEventListener("click", (e)=>{
-    console.log(e.target.dataset.choice);
+
+// choiceButtons.forEach(button => button.addEventListener("click", (e)=>{
+//     console.log(e.target.dataset.choice);
+//     const computerChoice = generateComputerSelection();
+//     computerChoiceSection.textContent = computerChoice;
+//     resultSection.textContent = playRound(e.target.dataset.choice, computerChoice);
+// }))
+
+
+
+
+function checkRoundWinner(roundResult){
+    if (roundResult.includes("You won!")) {
+        //playerScore++;
+        playerScore.textContent++;
+        
+    } else if (roundResult.includes("You lost!")){
+        computerScore.textContent++;
+    }
+}
+
+function checkGameWinner(buttons, chosenButton){
+    if(playerScore==5){
+        
+        console.log("Congratulations! You've defeated the computer!");
+        return;
+    }else if(computerScore==5){
+        
+        console.log("Oh no! The computer has defeated you!");
+        return;
+    } else {
+        // setTimeout(newGame, 2000);
+        console.log("no winner");
+        chosenButton.classList = '';
+        buttons.forEach(button => {button.disabled = false;});
+    }
+}
+
+
+
+choiceButtons.forEach(button => button.addEventListener("click", (e) =>{
+    
+    button.classList.add("buttonChosen");
+
+    choiceButtons.forEach(button => {button.disabled = true;});
+
+
+    const playerChoice = e.target.dataset.choice;
+    console.log(playerChoice);
+
     const computerChoice = generateComputerSelection();
     computerChoiceSection.textContent = computerChoice;
-    resultSection.textContent = playRound(e.target.dataset.choice, computerChoice);
+
+    const roundResult = playRound(playerChoice, computerChoice);
+
+    resultSection.textContent = roundResult;
+
+    checkRoundWinner(roundResult);
+    checkGameWinner(choiceButtons, button);
+    /*
+        1. Play a single round {
+            1. get player selection
+            2. get computer selection
+            3. compare the two
+            4. return the result (who won/draw)
+        }
+        2. Assign score {
+            1. get the result of the previous function
+            2. assign the score based on the result
+        }
+        3. Check score {
+            if player got 5, end game and declare them winner
+            if computer got 5, end game and declare it the winner
+            else, continue the game.
+        }
+    */
 }))
-
-
-
-
