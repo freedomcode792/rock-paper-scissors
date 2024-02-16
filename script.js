@@ -32,7 +32,8 @@ function resetSelectedButton(){
     if (selectedButton){
         setTimeout(function(){
             selectedButton.classList = '';
-        }, 800);
+            computerChoiceSection.textContent='';
+        }, 1000);
     }
 }
 
