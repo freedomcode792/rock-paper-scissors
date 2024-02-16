@@ -235,7 +235,7 @@ function checkGameWinner(buttons, chosenButton){
     } else {
         console.log("no winner");
         chosenButton.classList = '';
-        setTimeout(prepareNewRound(), 2000);
+        setTimeout(prepareNewRound, 1000);
     }
 }
 
