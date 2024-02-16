@@ -47,7 +47,7 @@ function generateComputerSelection(){
     
 }
 
-function printMessagesWithDelay(messages, nextFunction) {
+function prepareNewRound(messages = ["Rock", "Paper", "Scissors"]) {
     /*should:
      1)print three stings:"Rock","Paper","Scissors" into the console
      with a delay between each print
@@ -58,16 +58,17 @@ function printMessagesWithDelay(messages, nextFunction) {
     for (let i = 0; i < messages.length; i++){
         setTimeout(
             function () {
-                console.log(messages[i]);
+                resultSection.textContent = messages[i];
             }
         ,1000*(i+1));
 
         if(i>=messages.length-1){
             setTimeout(
                 function() {
-                    console.log("Make your choice!");
+                    resultSection.textContent = "Make your choice!";
+                    disableButtons(false);
                 }
-            ,1000*(i+1.5))
+            ,1000*(i+1.8));
         }  
     }
 }    
@@ -170,39 +171,6 @@ function game () {
     
 
     function newGame(){
-        /*
-            print introductory messages with a delay
-            (this part will probably also require the rest of the
-                code to be executed with a timeout)
-    
-            Note: it looks like working with delays comes down to
-            delaying the execution of the code that follows after.
-    
-            get player choice
-            get computer choice
-            get round result
-            print the choices and the result
-            add score to the winner
-    
-            if player got 5 wins {
-                print: "you won!"
-                end the function
-            }
-    
-            if computer got 5 wins {
-                print: "you lost!"
-                end the function
-            }
-    
-            if no winner == true {
-                repeatGame with delay
-    
-            There should be delays in two places:
-                -a delay of code execution until the intro messages have been printed
-                -a delay of the next recursion of the function 
-                plus the delays between the starting messages
-            }
-        */  
             printMessagesWithDelay(["Rock", "Paper", "Scissors"]);
             /*Wait until the messages have been output and start the code */
             
@@ -242,20 +210,6 @@ function game () {
     }
 }
 //game();
-const choiceButtons = document.querySelectorAll(".choice-button");
-const resultSection = document.querySelector("#roundResultSection");
-const computerChoiceSection = document.querySelector("#computerChoiceSection");
-//const scoreSection = document.querySelector("#scoreSection");
-let playerScore = document.getElementById('playerScore');
-let computerScore = document.getElementById('computerScore');
-
-
-// choiceButtons.forEach(button => button.addEventListener("click", (e)=>{
-//     console.log(e.target.dataset.choice);
-//     const computerChoice = generateComputerSelection();
-//     computerChoiceSection.textContent = computerChoice;
-//     resultSection.textContent = playRound(e.target.dataset.choice, computerChoice);
-// }))
 
 
 
@@ -273,29 +227,50 @@ function checkRoundWinner(roundResult){
 
 function checkGameWinner(buttons, chosenButton){
     if(playerScore.textContent==5){
-        
-        console.log("Congratulations! You've defeated the computer!");
+        resultSection.textContent = "Congratulations! You've defeated the computer!";
         return;
     }else if(computerScore.textContent==5){
-        
-        console.log("Oh no! The computer has defeated you!");
+        resultSection.textContent = "Oh no! The computer has defeated you!";
         return;
     } else {
-        // setTimeout(newGame, 2000);
         console.log("no winner");
         chosenButton.classList = '';
-        buttons.forEach(button => {button.disabled = false;});
+        setTimeout(prepareNewRound(), 2000);
     }
+}
+
+//Perhaps I should pack button disabling together with
+//INTRO DELAY.
+
+/*Plan:
+    INTRO DELAY
+    1. buttons are assigned event listeners
+    2. when a button is clicked it is disabled and the result is acquired
+    OUTRO DELAY
+    INTRO DELAY
+    3. buttons are enabled
+*/
+
+
+
+function disableButtons(trueOrFalse){
+    choiceButtons.forEach(button => {button.disabled = trueOrFalse;});
 }
 
 
 
+const choiceButtons = document.querySelectorAll(".choice-button");
+const resultSection = document.querySelector("#roundResultSection");
+const computerChoiceSection = document.querySelector("#computerChoiceSection");
+
+let playerScore = document.getElementById('playerScore');
+let computerScore = document.getElementById('computerScore');
+
+
 choiceButtons.forEach(button => button.addEventListener("click", (e) =>{
     
+    disableButtons(true);
     button.classList.add("buttonChosen");
-
-    choiceButtons.forEach(button => {button.disabled = true;});
-
 
     const playerChoice = e.target.dataset.choice;
     console.log(playerChoice);
@@ -309,21 +284,18 @@ choiceButtons.forEach(button => button.addEventListener("click", (e) =>{
 
     checkRoundWinner(roundResult);
     checkGameWinner(choiceButtons, button);
-    /*
-        1. Play a single round {
-            1. get player selection
-            2. get computer selection
-            3. compare the two
-            4. return the result (who won/draw)
-        }
-        2. Assign score {
-            1. get the result of the previous function
-            2. assign the score based on the result
-        }
-        3. Check score {
-            if player got 5, end game and declare them winner
-            if computer got 5, end game and declare it the winner
-            else, continue the game.
-        }
-    */
+    
 }))
+
+disableButtons(true);
+prepareNewRound();
+
+
+//delay and button block plan
+/*
+
+1. buttons should be blocked at the start
+2. unblock should happen after printing the intro messages
+3. when a button is chosen, buttons should be blocked again
+4. start unblocking sequence after a delay
+*/
