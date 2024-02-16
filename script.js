@@ -7,9 +7,12 @@ function generateComputerSelection(){
 
 function prepareNewRound(messages = ["Rock", "Paper", "Scissors"]) {
     
+    resetSelectedButton();
+
     for (let i = 0; i < messages.length; i++){
         setTimeout(
             function () {
+
                 resultSection.textContent = messages[i];
             }
         ,1000*(i+1));
@@ -25,6 +28,13 @@ function prepareNewRound(messages = ["Rock", "Paper", "Scissors"]) {
     }
 }    
 
+function resetSelectedButton(){
+    if (selectedButton){
+        setTimeout(function(){
+            selectedButton.classList = '';
+        }, 800);
+    }
+}
 
 function playRound(playerSelection, computerSelection){
 
@@ -72,7 +82,7 @@ function checkRoundWinner(roundResult){
 }
 
 
-function checkGameWinner(buttons, chosenButton){
+function checkGameWinner(chosenButton){
     if(playerScore.textContent==5){
         resultSection.textContent = "Congratulations! You've defeated the computer!";
         return;
@@ -89,6 +99,7 @@ function checkGameWinner(buttons, chosenButton){
 
 function disableButtons(trueOrFalse){
     choiceButtons.forEach(button => {button.disabled = trueOrFalse;});
+
 }
 
 
@@ -99,12 +110,13 @@ const computerChoiceSection = document.querySelector("#computerChoiceSection");
 
 let playerScore = document.getElementById('playerScore');
 let computerScore = document.getElementById('computerScore');
-
+let selectedButton;
 
 choiceButtons.forEach(button => button.addEventListener("click", (e) =>{
-    
-    disableButtons(true);
     button.classList.add("buttonChosen");
+    selectedButton = button;
+    disableButtons(true);
+    
 
     const playerChoice = e.target.dataset.choice;
     console.log(playerChoice);
