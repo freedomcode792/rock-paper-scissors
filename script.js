@@ -101,6 +101,12 @@ function checkGameWinner(chosenButton){
 function disableButtons(trueOrFalse){
     choiceButtons.forEach(button => {button.disabled = trueOrFalse;});
 
+    if (!trueOrFalse){
+        addChangeImageOnHover();
+        addRevertDefaultImage();
+    }else{
+        clearImageFunctions();
+    }
 }
 
 
@@ -135,9 +141,7 @@ choiceButtons.forEach(button => button.addEventListener("click", (e) =>{
     
 }))
 
-addChangeImageOnHover();
 
-addrevertDefaultImage();
 
 function addChangeImageOnHover(){
     choiceButtons.forEach(button=>{
@@ -145,7 +149,7 @@ function addChangeImageOnHover(){
     })
 }
 
-function addrevertDefaultImage(){
+function addRevertDefaultImage(){
     choiceButtons.forEach(button=>{
         button.addEventListener("mouseleave", revertDefaultImage);
     })
@@ -156,6 +160,15 @@ function changeImageOnHover(){
     playerChoiceSection.classList = "";
     playerChoiceSection.classList.add(this.dataset.choice);
 }
+
+function clearImageFunctions(){
+    choiceButtons.forEach(button=>{
+        button.removeEventListener("mouseenter", changeImageOnHover);
+        button.removeEventListener("mouseleave", revertDefaultImage);
+    })
+
+}
+
 
 function revertDefaultImage(){
     console.log(this);
