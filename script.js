@@ -108,6 +108,7 @@ function disableButtons(trueOrFalse){
 const choiceButtons = document.querySelectorAll(".choice-button");
 const resultSection = document.querySelector("#roundResultSection");
 const computerChoiceSection = document.querySelector("#computerChoiceSection");
+const playerChoiceSection = document.querySelector("#playerChoiceSection");
 
 let playerScore = document.getElementById('playerScore');
 let computerScore = document.getElementById('computerScore');
@@ -133,6 +134,34 @@ choiceButtons.forEach(button => button.addEventListener("click", (e) =>{
     checkGameWinner(choiceButtons, button);
     
 }))
+
+addChangeImageOnHover();
+
+addrevertDefaultImage();
+
+function addChangeImageOnHover(){
+    choiceButtons.forEach(button=>{
+        button.addEventListener("mouseenter", changeImageOnHover)
+    })
+}
+
+function addrevertDefaultImage(){
+    choiceButtons.forEach(button=>{
+        button.addEventListener("mouseleave", revertDefaultImage);
+    })
+}
+
+function changeImageOnHover(){
+    console.log(this);
+    playerChoiceSection.classList = "";
+    playerChoiceSection.classList.add(this.dataset.choice);
+}
+
+function revertDefaultImage(){
+    console.log(this);
+    playerChoiceSection.classList = "";
+    playerChoiceSection.classList.add("noChoice");
+}
 
 disableButtons(true);
 prepareNewRound();

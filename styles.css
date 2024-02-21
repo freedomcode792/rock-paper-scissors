@@ -22,15 +22,27 @@ body {
 
 #computerChoiceSection, #playerChoiceSection{
     width: 110px;
-    height:125px;
-    background-color: blanchedalmond;
-    border: 3px bisque outset;
-    border-radius: 5%;
+    height:125px;  
+}
+
+.noChoice, .Rock, .Paper, .Scissors{
+    background-size: 100% 100%;
 }
 
 .noChoice {
     background-image: url(images/fist.png);
-    background-size: cover;
+}
+
+.Rock {
+    background-image: url(images/rock.png);
+}
+
+.Paper {
+    background-image: url(images/paper.png);
+}
+
+.Scissors {
+    background-image: url(images/scissors.png);
 }
 
 #computerChoiceSection {
