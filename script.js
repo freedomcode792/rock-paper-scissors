@@ -5,9 +5,14 @@ function generateComputerSelection(){
     
 }
 
+
+function resetChoiceSection(){
+    playerChoiceSection.classList = '';
+    playerChoiceSection.classList.add("noChoice");
+}
+
 function prepareNewRound(messages = ["Rock", "Paper", "Scissors"]) {
     
-    resetSelectedButton();
 
     for (let i = 0; i < messages.length; i++){
         setTimeout(
@@ -15,7 +20,7 @@ function prepareNewRound(messages = ["Rock", "Paper", "Scissors"]) {
 
                 resultSection.textContent = messages[i];
             }
-        ,1000*(i+1));
+        ,1000*(i));
 
         if(i>=messages.length-1){
             setTimeout(
@@ -23,7 +28,7 @@ function prepareNewRound(messages = ["Rock", "Paper", "Scissors"]) {
                     resultSection.textContent = "Make your choice!";
                     disableButtons(false);
                 }
-            ,1000*(i+1.8));
+            ,1000*(i+0.8));
         }  
     }
 }    
@@ -93,7 +98,12 @@ function checkGameWinner(chosenButton){
     } else {
         console.log("no winner");
         chosenButton.classList = '';
-        setTimeout(prepareNewRound, 1000);
+        const afterRoundDelay = 2000;
+        setTimeout(function(){
+            prepareNewRound();
+            resetChoiceSection();
+            resetSelectedButton();
+        }, afterRoundDelay);
     }
 }
 
