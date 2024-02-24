@@ -32,7 +32,8 @@ function resetSelections(){
     if (selectedButton){
         setTimeout(function(){
             selectedButton.classList = '';
-            computerChoiceSection.textContent='';
+            computerChoiceSection.classList = "";
+            computerChoiceSection.classList.add("noChoice");
             playerChoiceSection.classList = '';
             playerChoiceSection.classList.add("noChoice");
             resultSection.textContent = "";
@@ -145,7 +146,7 @@ choiceButtons.forEach(button => button.addEventListener("click", (e) =>{
     console.log(playerChoice);
 
     const computerChoice = generateComputerSelection();
-    computerChoiceSection.textContent = computerChoice;
+    computerChoiceSection.classList.add(computerChoice);
 
     const roundResult = playRound(playerChoice, computerChoice);
 
