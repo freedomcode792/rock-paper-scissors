@@ -35,6 +35,7 @@ function resetSelections(){
             computerChoiceSection.textContent='';
             playerChoiceSection.classList = '';
             playerChoiceSection.classList.add("noChoice");
+            resultSection.textContent = "";
         }, 1000);
     }
 }
@@ -100,10 +101,15 @@ function checkGameWinner(chosenButton){
 }
 
 function delayNextRound(){
-    const afterRoundDelay = 2000;
+    const afterRoundDelay = 1400;
     setTimeout(function(){
-        prepareNewRound();
+
+        setTimeout(function(){
+            prepareNewRound();
+        },500)
+
         resetSelections();
+
         }, afterRoundDelay);
 }
 
