@@ -6,38 +6,35 @@ function generateComputerSelection(){
 }
 
 
-function resetChoiceSection(){
-    playerChoiceSection.classList = '';
-    playerChoiceSection.classList.add("noChoice");
-}
 
 function prepareNewRound(messages = ["Rock", "Paper", "Scissors"]) {
     
+    setTimeout(function(){
 
-    for (let i = 0; i < messages.length; i++){
-        setTimeout(
-            function () {
+        const lastArrIndex = messages.length-1;
 
+        for (let i = 0; i <= lastArrIndex; i++){
+            setTimeout(function(){
                 resultSection.textContent = messages[i];
-            }
-        ,1000*(i));
+            }, ( 1000*i ));
 
-        if(i>=messages.length-1){
-            setTimeout(
-                function() {
+            if(i===lastArrIndex){
+                setTimeout(function(){
                     resultSection.textContent = "Make your choice!";
                     disableButtons(false);
-                }
-            ,1000*(i+0.8));
-        }  
-    }
+                }, 1000*(lastArrIndex+1));
+            }
+        }
+    }, 1000);
 }    
 
-function resetSelectedButton(){
+function resetSelections(){
     if (selectedButton){
         setTimeout(function(){
             selectedButton.classList = '';
             computerChoiceSection.textContent='';
+            playerChoiceSection.classList = '';
+            playerChoiceSection.classList.add("noChoice");
         }, 1000);
     }
 }
@@ -98,15 +95,17 @@ function checkGameWinner(chosenButton){
     } else {
         console.log("no winner");
         chosenButton.classList = '';
-        const afterRoundDelay = 2000;
-        setTimeout(function(){
-            prepareNewRound();
-            resetChoiceSection();
-            resetSelectedButton();
-        }, afterRoundDelay);
+        delayNextRound();
     }
 }
 
+function delayNextRound(){
+    const afterRoundDelay = 2000;
+    setTimeout(function(){
+        prepareNewRound();
+        resetSelections();
+        }, afterRoundDelay);
+}
 
 function disableButtons(trueOrFalse){
     choiceButtons.forEach(button => {button.disabled = trueOrFalse;});
