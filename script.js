@@ -13,6 +13,8 @@ function prepareNewRound(messages = ["Rock", "Paper", "Scissors"]) {
 
         const lastArrIndex = messages.length-1;
 
+        shakeFists();
+        
         for (let i = 0; i <= lastArrIndex; i++){
             setTimeout(function(){
                 resultSection.textContent = messages[i];
@@ -192,6 +194,18 @@ function revertDefaultImage(){
     playerChoiceSection.classList.add("noChoice");
 }
 
+function shakeFists(){
+    computerChoiceSection.classList.add("shake-fist");
+    playerChoiceSection.classList.add("shake-fist");
+
+    setTimeout(function(){
+        computerChoiceSection.classList.remove("shake-fist");
+        playerChoiceSection.classList.remove("shake-fist");
+    }, 3000);
+}
+
 disableButtons(true);
 prepareNewRound();
+
+
 
