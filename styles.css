@@ -22,7 +22,8 @@ body {
 
 #computerChoiceSection, #playerChoiceSection{
     width: 110px;
-    height:125px;  
+    height:125px;
+    position: relative;
 }
 
 .noChoice, .Rock, .Paper, .Scissors{
@@ -46,27 +47,50 @@ body {
 }
 
 #computerChoiceSection {
-    transform: rotate(180deg)
+    
+    transform: rotate(180deg);
+
 }
 
 
-@keyframes shake{
+@keyframes shakeTopFist{
     0%{
-        transform: translateY(0);
+        top: 0px;
     }
 
     50%{
-        transform: translateY(40px);
+        top: 40px;
     }
     100%{
-        transform: translateY(0);
+        top: 0px;
     }
 }
 
-.shake-fist{
-    animation: shake  1s ease-in-out alternate;
+.shake-top-fist{
+    animation: shakeTopFist  1s ease-in-out alternate;
     animation-iteration-count: 3;
 }
+
+
+@keyframes shakeBottomFist{
+    0%{
+        top: 0px;
+    }
+
+    50%{
+        top: -40px;
+    }
+    100%{
+        top: 0px;
+    }
+}
+
+.shake-bottom-fist{
+    animation: shakeBottomFist  1s ease-in-out alternate;
+    animation-iteration-count: 3;
+}
+
+
 
 #roundResultSection{
 
