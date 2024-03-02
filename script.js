@@ -18,13 +18,13 @@ function prepareNewRound(messages = ["Rock", "Paper", "Scissors"]) {
         for (let i = 0; i <= lastArrIndex; i++){
             setTimeout(function(){
                 resultSection.textContent = messages[i];
-            }, ( 1000*i ));
+            }, ( 500*i ));
 
             if(i===lastArrIndex){
                 setTimeout(function(){
                     resultSection.textContent = "Make your choice!";
                     disableButtons(false);
-                }, 1000*(lastArrIndex+1));
+                }, 600*(lastArrIndex+1));
             }
         }
     }, 1000);

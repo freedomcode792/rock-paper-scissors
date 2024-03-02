@@ -6,7 +6,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 30px;
+    gap: 40px;
 }
 
 #scoreSection{
@@ -55,11 +55,11 @@ body {
 
 @keyframes shakeTopFist{
     0%{
-        top: 0px;
+        top: -10px;
     }
 
     50%{
-        top: 40px;
+        top: 30px;
     }
     100%{
         top: 0px;
@@ -67,18 +67,18 @@ body {
 }
 
 .shake-top-fist{
-    animation: shakeTopFist  1s ease-in-out alternate;
+    animation: shakeTopFist  0.5s ease-in-out alternate;
     animation-iteration-count: 3;
 }
 
 
 @keyframes shakeBottomFist{
     0%{
-        top: 0px;
+        top: 10px;
     }
 
     50%{
-        top: -40px;
+        top: -30px;
     }
     100%{
         top: 0px;
@@ -86,7 +86,7 @@ body {
 }
 
 .shake-bottom-fist{
-    animation: shakeBottomFist  1s ease-in-out alternate;
+    animation: shakeBottomFist  0.5s ease-in-out alternate;
     animation-iteration-count: 3;
 }
 
