@@ -1,3 +1,4 @@
+
 body {
     height: 100vh;
     width: 100vw;
@@ -6,8 +7,10 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 40px;
+    margin: 0px;
 }
+
+
 
 #scoreSection{
     list-style: none;
@@ -47,15 +50,17 @@ body {
 }
 
 #computerChoiceSection {
-    
     transform: rotate(180deg);
+    
+}
 
+#playerChoiceSection {
 }
 
 
 @keyframes shakeTopFist{
     0%{
-        top: -10px;
+        top: 0px;
     }
 
     50%{
@@ -74,7 +79,7 @@ body {
 
 @keyframes shakeBottomFist{
     0%{
-        top: 10px;
+        top: 0px;
     }
 
     50%{
@@ -93,11 +98,16 @@ body {
 
 
 #roundResultSection{
-
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 #buttonSection {
+    margin-top: 20px;
+}
 
+#scoreSection{
+    margin-top: 40px;
 }
 
 .button-pressed{
