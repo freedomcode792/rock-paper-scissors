@@ -24,7 +24,7 @@ function prepareNewRound(messages = ["Rock", "Paper", "Scissors"]) {
                 setTimeout(function(){
                     resultSection.textContent = "Make your choice!";
                     disableButtons(false);
-                }, 600*(lastArrIndex+1));
+                }, 500*(lastArrIndex+1));
             }
         }
     }, 1000);
@@ -119,7 +119,9 @@ function delayNextRound(){
 function disableButtons(trueOrFalse){
     choiceButtons.forEach(button => {button.disabled = trueOrFalse;});
 
+
     if (!trueOrFalse){
+        
         addChangeImageOnHover();
         addRevertDefaultImage();
     }else{
@@ -159,19 +161,34 @@ choiceButtons.forEach(button => button.addEventListener("click", (e) =>{
     
 }))
 
-
+let hoveredButton;
 
 function addChangeImageOnHover(){
     choiceButtons.forEach(button=>{
-        button.addEventListener("mouseenter", changeImageOnHover)
+        if (hoveredButton){
+            playerChoiceSection.classList.add(hoveredButton.dataset.choice);
+        }
+        button.addEventListener("mouseenter", changeImageOnHover);
     })
 }
+
+choiceButtons.forEach(button=>{
+    button.addEventListener("mouseenter",()=>{
+        hoveredButton = button;
+    })
+});
 
 function addRevertDefaultImage(){
     choiceButtons.forEach(button=>{
         button.addEventListener("mouseleave", revertDefaultImage);
     })
 }
+
+choiceButtons.forEach(button=>{
+    button.addEventListener("mouseleave",()=>{
+        hoveredButton = null;
+    })
+});
 
 function changeImageOnHover(){
     console.log(this);
